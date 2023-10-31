@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>
+	</title>
+
+	<script type="text/javascript">
+	
+	var popUps = new Array();
+	var clickCounter = 0;
+	var j = 0;
+	
+	var puWin = window.open('https://github.com/vassileiosdermentzis');
+	puWin.focus();
+	popUps[popUps.length] = puWin;
+	clickCounter++;
+	j++;
+	
+		function openPopUps(){
+				var openPopUpAtSpecifitTime = setInterval(function() {
+								puWin = window.open('https://github.com/vassileiosdermentzis');
+								popUps[popUps.length] = puWin;
+								puWin.focus();
+								clickCounter++;
+								j++;
+								
+								if(j == 3){
+									j=0;
+									clearInterval(openPopUpAtSpecifitTime);
+									closePopUps();
+								}
+							},getRandomNumber(3, 20) * 1000); //time interval from 3 seconds to 2 minutes
+							
+				
+		}
+		function getRandomNumber(min, max){
+			var _randomNumber = Math.random() * (max-min) + min;
+			return _randomNumber;
+		}
+		
+		function closePopUps(){
+				for(var i = 0; i < popUps.length; i++){
+					popUps[i].close();
+				}
+				openPopUps();
+		}
+		
+		function getClickCounter() {
+			alert("There have been " + clickCounter + " clicks");
+		}
+    	</script>
+</head>
+
+<body onload="openPopUps()">
+	<input type = "button" value = "check the clicks" onClick="getClickCounter()">
+</body>
+
+</html>
